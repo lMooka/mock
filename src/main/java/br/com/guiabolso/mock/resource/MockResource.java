@@ -1,7 +1,6 @@
 package br.com.guiabolso.mock.resource;
 
 import br.com.guiabolso.mock.entity.MockTransaction;
-import br.com.guiabolso.mock.entity.MockTransactionDate;
 import br.com.guiabolso.mock.exception.ResponseStatusCodeException;
 import br.com.guiabolso.mock.util.WordGenerator;
 import org.springframework.http.HttpStatus;
@@ -56,7 +55,7 @@ public class MockResource {
 
         Calendar calendarAux = Calendar.getInstance();
         for (int i = 0; i < transactionAmount; i++) {
-            MockTransactionDate mockTransaction = new MockTransactionDate();
+            MockTransaction mockTransaction = new MockTransaction();
             // gera a descrição de forma aleatória
             mockTransaction.setDescricao(WordGenerator.generatePhrase(random));
             // define o valor dentro do intervalo de -9.999.999 e 9.999.999 (inclusive).
@@ -90,7 +89,6 @@ public class MockResource {
 
             Date transactionDate = calendarAux.getTime();
             mockTransaction.setData(String.valueOf(transactionDate.getTime()));
-            mockTransaction.setDataCompleta(transactionDate);
             transactions.add(mockTransaction);
         }
         return ResponseEntity.ok(transactions);
